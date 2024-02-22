@@ -3,11 +3,6 @@ const day = document.querySelector('.day');
 const time = document.querySelector('.time');
 const newYearCount = document.querySelector('.new-year-count');
 
-console.log(greeting);
-console.log(day);
-console.log(time);
-console.log(newYearCount);
-
 function getGreeting() {
   const hour = new Date().getHours();
   if (hour < 6) {
@@ -50,7 +45,7 @@ function getDay() {
 }
 
 function getTime() {
-  let nowTime = new Date().toLocaleTimeString('en');
+  const nowTime = new Date().toLocaleTimeString('en');
   time.textContent = `Текущее время: ${nowTime}`;
 }
 
