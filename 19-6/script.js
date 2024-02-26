@@ -2,9 +2,10 @@ const greeting = document.querySelector('.greeting');
 const day = document.querySelector('.day');
 const time = document.querySelector('.time');
 const newYearCount = document.querySelector('.new-year-count');
+const date = new Date();
 
 function getGreeting() {
-  const hour = new Date().getHours();
+  const hour = date.getHours();
   if (hour < 6) {
     greeting.textContent = 'Доброй ночи!';
   } else if (hour < 12) {
@@ -17,7 +18,7 @@ function getGreeting() {
 }
 
 function getDay() {
-  const dayOfWeek = new Date().getDay();
+  const dayOfWeek = date.getDay();
   switch (dayOfWeek) {
     case 0:
       day.textContent = 'Воскресенье';
@@ -45,14 +46,13 @@ function getDay() {
 }
 
 function getTime() {
-  const nowTime = new Date().toLocaleTimeString('en');
+  const nowTime = date.toLocaleTimeString('en');
   time.textContent = `Текущее время: ${nowTime}`;
 }
 
 function getNewYearCount() {
-  const now = new Date();
-  const newYear = new Date(now.getFullYear() + 1, 0, 1);
-  const diff = newYear - now;
+  const newYear = new Date(date.getFullYear() + 1, 0, 1);
+  const diff = newYear - date;
   const daysToNewYear = Math.floor(diff / (1000 * 60 * 60 * 24));
   newYearCount.textContent = `До нового года осталось: ${daysToNewYear} дней`;
 }
