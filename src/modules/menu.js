@@ -18,11 +18,13 @@ const menu = () => {
     });
   };
 
-  menuBtn.addEventListener('click', handleMenu);
+  menuBtn.addEventListener('click', () => {
+    if (screen.width >= 768) handleMenu();
+  });
 
   closeBtn.addEventListener('click', handleMenu);
 
-  scrollBtn.addEventListener('click', () => {
+  scrollBtn.addEventListener('click', (event) => {
     event.preventDefault();
     smoothScroll(scrollBtn);
   });
