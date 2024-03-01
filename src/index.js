@@ -11,5 +11,5 @@ menu();
 modal();
 validation();
 tabs();
-calc();
+calc(100);
 slider();
