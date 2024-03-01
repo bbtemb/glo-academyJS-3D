@@ -1,14 +1,13 @@
 const modal = () => {
-  const modal = document.querySelector('.popup');
+  const popup = document.querySelector('.popup');
   const modalBlock = document.querySelector('.popup-content');
   const buttons = document.querySelectorAll('.popup-btn');
-  const closeBtn = document.querySelector('.popup-close');
 
   const fadeIn = () => {
     let opacity = 0;
     const animate = () => {
       opacity += 0.05;
-      modal.style.opacity = opacity;
+      popup.style.opacity = opacity;
       if (opacity < 1) {
         requestAnimationFrame(animate);
       }
@@ -30,7 +29,7 @@ const modal = () => {
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      modal.style.display = 'block';
+      popup.style.display = 'block';
       if (screen.width >= 768) {
         fadeIn();
         transition();
@@ -38,9 +37,9 @@ const modal = () => {
     });
   });
 
-  modal.addEventListener('click', (e) => {
+  popup.addEventListener('click', (e) => {
     if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
-      modal.style.display = 'none';
+      popup.style.display = 'none';
     }
   });
 

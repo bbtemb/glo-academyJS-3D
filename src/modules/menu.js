@@ -1,10 +1,10 @@
 const menu = () => {
-  const menu = document.querySelector('menu');
+  const menuBlock = document.querySelector('menu');
   const body = document.querySelector('body');
   let menuCheck = false;
 
   const handleMenu = () => {
-    menu.classList.toggle('active-menu');
+    menuBlock.classList.toggle('active-menu');
     menuCheck = !menuCheck;
   };
 
