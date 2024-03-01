@@ -1,3 +1,5 @@
+import { animate } from './helpers';
+
 const calc = (price = 100) => {
   const calcBlock = document.querySelector('.calc-block');
   const calcType = document.querySelector('.calc-type');
@@ -8,19 +10,6 @@ const calc = (price = 100) => {
 
   let lastValue = 0;
   let value = 0;
-
-  function animateValue(obj, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      obj.innerHTML = Math.floor(progress * (end - start) + start);
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      }
-    };
-    window.requestAnimationFrame(step);
-  }
 
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -45,6 +34,7 @@ const calc = (price = 100) => {
     } else {
       totalValue = 0;
     }
+
     return totalValue;
   };
 
@@ -52,8 +42,21 @@ const calc = (price = 100) => {
     if (e.target === calcType || e.target === calcSquare
      || e.target === calcCount || e.target === calcDay) {
       value = countCalc();
-      animateValue(total, lastValue, value, 500);
-      lastValue = value;
+      if (value > 0) {
+        animate({
+          duration: 400,
+          timing(timeFraction) {
+            return timeFraction;
+          },
+          draw(progress) {
+            const progressValue = lastValue + (value - lastValue) * (progress.toFixed(2));
+            if (progress === 1) {
+              lastValue = progressValue;
+            }
+            total.innerHTML = Math.floor(progressValue);
+          },
+        });
+      }
     }
   });
 };
